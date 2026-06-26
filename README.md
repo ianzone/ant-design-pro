@@ -90,14 +90,14 @@ cd myapp
 ### Installation
 
 ```bash
-npm install
+bun install
 ```
 
 ### Development
 
 ```bash
 # Start development server (full version by default)
-npm start
+bun start
 ```
 
 ### Simplify to Simple Version
@@ -105,7 +105,7 @@ npm start
 This project includes all blocks by default. If you need a minimal version, run:
 
 ```bash
-npm run simple
+bun run simple
 ```
 
 This will:
@@ -119,7 +119,7 @@ This will:
 ### Build
 
 ```bash
-npm run build
+bun run build
 ```
 
 ## AI Skills (Claude Code)

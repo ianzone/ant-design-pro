@@ -23,7 +23,7 @@
 ```bash
 git clone --depth 1 https://github.com/ant-design/ant-design-pro.git my-project
 cd my-project
-npm install
+bun install
 ```
 
 The project offers two modes:
@@ -35,8 +35,8 @@ Switch to simple mode:
 
 ```bash
 git add -A && git commit -m "chore: save before simple"  # Commit first to allow revert
-npm run simple                                             # Remove demo pages and unused deps
-npm install                                                # Update dependencies
+bun run simple                                             # Remove demo pages and unused deps
+bun install                                                # Update dependencies
 ```
 
 > 💡 Start with full mode to learn the project structure, then switch to simple mode for development.
@@ -66,30 +66,30 @@ npm install                                                # Update dependencies
 
 | Command | Description |
 |---------|-------------|
-| `npm start` | Start dev server (UMI_ENV=dev, with Mock) |
-| `npm run dev` | Start dev server (UMI_ENV=dev, no Mock) |
-| `npm run start:no-mock` | Start without Mock |
-| `npm run start:pre` | Pre-production environment |
-| `npm run start:test` | Test environment |
-| `npm run build` | Build for production |
-| `npm run preview` | Preview built output (run `npm run build` first, port 8000) |
-| `npm run preview:build` | Build and preview (port 8000) |
-| `npm run deploy` | Build and deploy to GitHub Pages |
-| `npm run analyze` | Analyze bundle size |
-| `npm run lint` | Lint (Biome + TypeScript) |
-| `npm run biome` | Auto-fix with Biome |
-| `npm test` | Run tests |
-| `npm run test:coverage` | Test with coverage |
-| `npm run test:update` | Update test snapshots |
-| `npm run tsc` | Type check without emitting |
-| `npm run i18n-remove` | Remove i18n wrappers (locale=zh-CN) |
-| `npm run record` | Record request data for login scene |
-| `npm run openapi` | Generate API code from OpenAPI schema |
-| `npm run simple` | Strip demo pages and unused deps |
+| `bun start` | Start dev server (UMI_ENV=dev, with Mock) |
+| `bun run dev` | Start dev server (UMI_ENV=dev, no Mock) |
+| `bun run start:no-mock` | Start without Mock |
+| `bun run start:pre` | Pre-production environment |
+| `bun run start:test` | Test environment |
+| `bun run build` | Build for production |
+| `bun run preview` | Preview built output (run `bun run build` first, port 8000) |
+| `bun run preview:build` | Build and preview (port 8000) |
+| `bun run deploy` | Build and deploy to GitHub Pages |
+| `bun run analyze` | Analyze bundle size |
+| `bun run lint` | Lint (Biome + TypeScript) |
+| `bun run biome` | Auto-fix with Biome |
+| `bun test` | Run tests |
+| `bun run test:coverage` | Test with coverage |
+| `bun run test:update` | Update test snapshots |
+| `bun run tsc` | Type check without emitting |
+| `bun run i18n-remove` | Remove i18n wrappers (locale=zh-CN) |
+| `bun run record` | Record request data for login scene |
+| `bun run openapi` | Generate API code from OpenAPI schema |
+| `bun run simple` | Strip demo pages and unused deps |
 
 > 💡 `UMI_ENV` switches environment configs, mapping to different proxy rules in `config/proxy.ts`.
 
-> 💡 `npm run simple` removes demo pages (dashboard, form, list etc.) and unused dependencies (plots, etc.), replacing with minimal routes. Ideal for starting from scratch. **Commit your code first so you can revert if needed.**
+> 💡 `bun run simple` removes demo pages (dashboard, form, list etc.) and unused dependencies (plots, etc.), replacing with minimal routes. Ideal for starting from scratch. **Commit your code first so you can revert if needed.**
 
 **Build tool:** This project uses [utoopack](https://github.com/utooland/utoo) (a next-gen bundler powered by Turbopack) as the default build tool, configured via the `utoopack` field in `config/config.ts`. utoopack is Webpack-compatible and supports `module.rules` for custom loaders.
 
@@ -283,7 +283,7 @@ await request('/api/users', { method: 'POST', data: { name: 'test' } });
 **OpenAPI code generation:**
 
 ```bash
-npm run openapi
+bun run openapi
 ```
 
 Auto-generates API calling code under `src/services/` based on `config/oneapi.json`.
@@ -441,9 +441,9 @@ Use SettingDrawer in dev mode to switch themes in real-time.
 **Jest testing:**
 
 ```bash
-npm test                    # Run all tests
-npm run test:coverage       # With coverage report
-npm run test:update         # Update snapshots
+bun test                    # Run all tests
+bun run test:coverage       # With coverage report
+bun run test:update         # Update snapshots
 ```
 
 Test files go next to the component, named `*.test.ts(x)`.
@@ -474,14 +474,14 @@ export default {
 };
 ```
 
-> 💡 Use `MOCK=none` to skip mock and proxy to backend: `npm run start:no-mock`.
+> 💡 Use `MOCK=none` to skip mock and proxy to backend: `bun run start:no-mock`.
 
 → See [umi Testing](https://umijs.org/en-US/docs/guides/test), [umi Mock](https://umijs.org/en-US/docs/guides/mock)
 
 ## FAQ
 
 **Q: How to disable Mock?**
-`npm run start:no-mock` or `cross-env MOCK=none max dev`
+`bun run start:no-mock` or `cross-env MOCK=none max dev`
 
 **Q: How to change the primary color?**
 Edit `colorPrimary` in `config/defaultSettings.ts`. Use SettingDrawer for live preview in dev mode.
@@ -500,10 +500,10 @@ npx skills add ant-design/ant-design-pro
 Then run `/pro-upgrade` in Claude Code at the project root — AI will auto-diff the latest template and assist your upgrade (deps, config, code patterns, etc.), with conservative handling for ambiguous merges. For other AI assistants, paste the content of `.claude/skills/pro-upgrade/SKILL.md` to them.
 
 **Q: How to deploy?**
-`npm run build` generates `dist/`. Deploy to any static file server. Set `publicPath` for non-root deployments. `npm run deploy` builds and publishes to GitHub Pages automatically (pushes to gh-pages branch).
+`bun run build` generates `dist/`. Deploy to any static file server. Set `publicPath` for non-root deployments. `bun run deploy` builds and publishes to GitHub Pages automatically (pushes to gh-pages branch).
 
 **Q: How to use OpenAPI code generation?**
-1. Configure `openAPI` in `config/config.ts` 2. Run `npm run openapi` 3. Code is auto-generated under `src/services/`
+1. Configure `openAPI` in `config/config.ts` 2. Run `bun run openapi` 3. Code is auto-generated under `src/services/`
 
 → See [umi FAQ](https://umijs.org/en-US/docs/introduce/faq)
 
@@ -551,7 +551,7 @@ Then run `/pro-upgrade` in Claude Code at the project root — AI will auto-diff
 ```bash
 # 1. Edit OpenAPI config: config/oneapi.json
 # 2. Run generation (overwrites src/services/ant-design-pro/)
-npm run openapi
+bun run openapi
 # 3. Never edit generated code manually — modify oneapi.json and regenerate
 ```
 
@@ -559,8 +559,8 @@ npm run openapi
 
 ```bash
 git add -A && git commit -m "chore: save before simple"  # Must commit first
-npm run simple                                              # Irreversible
-npm install                                                 # Update dependencies
+bun run simple                                              # Irreversible
+bun install                                                 # Update dependencies
 ```
 
 ## AI Skills (Claude Code)
@@ -581,7 +581,7 @@ What it does:
 2. Classifies framework vs. business files
 3. Merges dependency updates, config changes, and code pattern migrations
 4. Runs `npx antd lint` to catch antd-specific issues
-5. Verifies with `npm run lint && npm run build`
+5. Verifies with `bun run lint && bun run build`
 
 ### `/antd` — Ant Design CLI Helper
 
@@ -613,8 +613,8 @@ For other AI assistants (Cursor, etc.), paste the content of `.claude/skills/pro
 
 ## Constraints & Gotchas
 
-- **`src/services/ant-design-pro/`** is auto-generated code. Do NOT edit manually. Modify `config/oneapi.json` and run `npm run openapi` to regenerate.
-- **`npm run simple` is irreversible**: It deletes demo pages and unused dependencies. Always commit before running.
+- **`src/services/ant-design-pro/`** is auto-generated code. Do NOT edit manually. Modify `config/oneapi.json` and run `bun run openapi` to regenerate.
+- **`bun run simple` is irreversible**: It deletes demo pages and unused dependencies. Always commit before running.
 - **`.umi` temp directory**: `src/.umi` is auto-generated by Umi. Delete it and restart the dev server if you encounter unexpected behavior.
 - **Biome over ESLint**: This project uses Biome for linting and formatting. Do not install ESLint or Prettier plugins.
 - **Commit convention**: Must follow [Conventional Commits](https://www.conventionalcommits.org/) (e.g., `feat:`, `fix:`, `chore:`).

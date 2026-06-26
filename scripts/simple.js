@@ -1,6 +1,6 @@
 /**
  * 精简脚本 - 将完整版精简为简单版
- * 执行 npm run simple 运行此脚本
+ * 执行 bun run simple 运行此脚本
  *
  * 此操作不可逆，会删除以下内容：
  * - 页面目录：dashboard, form, list/basic-list, list/card-list, list/search, profile, result, exception, account, user/register, user/register-result
@@ -42,9 +42,9 @@ const devDepsToRemove = [
 function deleteDir(dirPath) {
   if (fs.existsSync(dirPath)) {
     fs.rmSync(dirPath, { recursive: true, force: true });
-    console.log(`✓ 已删除目录: ${dirPath}`);
+    console.log(`✓ 已删除目录：${dirPath}`);
   } else {
-    console.log(`- 目录不存在，跳过: ${dirPath}`);
+    console.log(`- 目录不存在，跳过：${dirPath}`);
   }
 }
 
@@ -52,9 +52,9 @@ function deleteDir(dirPath) {
 function deleteFile(filePath) {
   if (fs.existsSync(filePath)) {
     fs.unlinkSync(filePath);
-    console.log(`✓ 已删除文件: ${filePath}`);
+    console.log(`✓ 已删除文件：${filePath}`);
   } else {
-    console.log(`- 文件不存在，跳过: ${filePath}`);
+    console.log(`- 文件不存在，跳过：${filePath}`);
   }
 }
 
@@ -68,12 +68,12 @@ function replaceRoutes() {
     const simpleRoutes = fs.readFileSync(simpleRoutesPath, 'utf-8');
     // 写入到 routes.ts
     fs.writeFileSync(routesPath, simpleRoutes);
-    console.log(`✓ 已替换路由配置: ${routesPath}`);
+    console.log(`✓ 已替换路由配置：${routesPath}`);
     // 删除简单版路由备份文件
     fs.unlinkSync(simpleRoutesPath);
-    console.log(`✓ 已删除备份文件: ${simpleRoutesPath}`);
+    console.log(`✓ 已删除备份文件：${simpleRoutesPath}`);
   } else {
-    console.log(`- 简单版路由配置不存在，跳过: ${simpleRoutesPath}`);
+    console.log(`- 简单版路由配置不存在，跳过：${simpleRoutesPath}`);
   }
 }
 
@@ -89,7 +89,7 @@ function updatePackageJson() {
     for (const dep of depsToRemove) {
       if (pkg.dependencies[dep]) {
         delete pkg.dependencies[dep];
-        console.log(`✓ 已移除依赖: ${dep}`);
+        console.log(`✓ 已移除依赖：${dep}`);
         modified = true;
       }
     }
@@ -100,7 +100,7 @@ function updatePackageJson() {
     for (const dep of devDepsToRemove) {
       if (pkg.devDependencies[dep]) {
         delete pkg.devDependencies[dep];
-        console.log(`✓ 已移除开发依赖: ${dep}`);
+        console.log(`✓ 已移除开发依赖：${dep}`);
         modified = true;
       }
     }
@@ -157,7 +157,7 @@ function main() {
 
   console.log('\n========================================');
   console.log('  精简完成！');
-  console.log('  请运行 npm install 更新依赖');
+  console.log('  请运行 bun install 更新依赖');
   console.log('========================================');
 }
 

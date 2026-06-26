@@ -19,7 +19,7 @@ Language : [English](./README.md) | 简体中文
 
 - 预览：https://preview.pro.ant.design
 - 使用文档：[docs/cheatsheet.zh-CN.md](./docs/cheatsheet.zh-CN.md)
-- 更新日志: https://github.com/ant-design/ant-design-pro/releases
+- 更新日志：https://github.com/ant-design/ant-design-pro/releases
 - 常见问题：[docs/cheatsheet.zh-CN.md#faq](./docs/cheatsheet.zh-CN.md#faq)
 - **v6 正式发布！** — [查看 v6 更新内容](https://github.com/ant-design/ant-design-pro/releases/tag/v6.0.0)
 
@@ -89,14 +89,14 @@ cd myapp
 ### 安装依赖
 
 ```bash
-npm install
+bun install
 ```
 
 ### 开发
 
 ```bash
 # 启动开发服务器（默认为完整版）
-npm start
+bun start
 ```
 
 ### 精简为简单版本
@@ -104,7 +104,7 @@ npm start
 本项目默认包含所有区块。如果你需要一个最小化的版本，运行：
 
 ```bash
-npm run simple
+bun run simple
 ```
 
 这将会：
@@ -118,12 +118,12 @@ npm run simple
 ### 构建
 
 ```bash
-npm run build
+bun run build
 ```
 
 更多信息请参考 [使用文档](./docs/cheatsheet.zh-CN.md)。
 
-## AI Skills（Claude Code）
+## AI Skills (Claude Code)
 
 本项目内置了两个 [Claude Code Skills](https://docs.anthropic.com/en/docs/claude-code/skills)，位于 `.claude/skills/` 目录下：
 

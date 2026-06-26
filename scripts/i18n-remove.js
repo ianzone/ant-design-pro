@@ -1,6 +1,6 @@
 /**
  * i18n 移除脚本 - 将国际化的文本替换为中文，移除 i18n 相关代码
- * 执行 npm run i18n-remove 运行此脚本
+ * 执行 bun run i18n-remove 运行此脚本
  *
  * 此操作不可逆，会执行以下变更：
  * - 读取 src/locales/zh-CN 的翻译映射
@@ -338,7 +338,7 @@ function processFile(filePath, localeMap) {
   content = content.replace(/\{'([^']*)'\}/g, (match, text, offset, str) => {
     const before = str.slice(Math.max(0, offset - 30), offset);
     const charBeforeBrace = before.trimEnd().slice(-1);
-    // 不简化: JSX 属性(=)、模板字符串($)、函数参数/数组/表达式((,[,,)
+    // 不简化：JSX 属性 (=)、模板字符串 ($)、函数参数/数组/表达式 ((,[,,)
     if (
       charBeforeBrace === '=' ||
       charBeforeBrace === '$' ||
@@ -367,7 +367,7 @@ function processFile(filePath, localeMap) {
   if (content !== original) {
     fs.writeFileSync(filePath, content);
     const relPath = path.relative('.', filePath);
-    console.log(`✓ 已处理: ${relPath}`);
+    console.log(`✓ 已处理：${relPath}`);
   }
 }
 
@@ -406,7 +406,7 @@ function replaceFormatMessageCalls(content, localeMap) {
       const defaultMsg = dmMatch ? dmMatch[1] || dmMatch[2] : '';
 
       // 检查是否有第二参数（ICU 格式化参数），如果有则跳过
-      // 第一参数结束位置: 找到第一个 },{ 或 },\s*{
+      // 第一参数结束位置：找到第一个 },{ 或 },\s*{
       const firstArgEnd = fullCall.indexOf('},');
       if (firstArgEnd !== -1 && firstArgEnd < fullCall.length - 2) {
         // 有第二参数 — 无法静态替换，跳过
@@ -587,7 +587,7 @@ function main() {
 
   console.log('\n========================================');
   console.log('  i18n 移除完成！');
-  console.log('  请运行 npm install 并检查代码');
+  console.log('  请运行 bun install 并检查代码');
   console.log('========================================');
 }
 

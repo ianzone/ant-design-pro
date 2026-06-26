@@ -2,15 +2,15 @@
 name: pro-upgrade
 description: >
   Use when the user wants to upgrade their Ant Design Pro project to the latest version.
-  Triggers on: upgrade pro, pro upgrade, migrate pro, update pro, 升级, 迁移项目,
+  Triggers on: upgrade pro, pro upgrade, migrate pro, update pro, 升级，迁移项目，
   "how to upgrade", "update to latest", "keep project up to date".
 allowed-tools:
   - Bash(git clone *)
   - Bash(diff *)
-  - Bash(npm install)
-  - Bash(npm run lint*)
-  - Bash(npm run build*)
-  - Bash(npm run tsc*)
+  - Bash(bun install)
+  - Bash(bun run lint*)
+  - Bash(bun run build*)
+  - Bash(bun run tsc*)
   - Bash(npx antd *)
   - Bash(rm -rf /tmp/ant-design-pro-upgrade*)
   - Read
@@ -65,7 +65,7 @@ Separate the user's project files into **framework files** (Pro-owned, rarely cu
 | `biome.json` or `biome.jsonc` | linter config |
 | `.husky/` | git hooks |
 | `commitlint.config.*` | commit lint config |
-| `src/services/ant-design-pro/` | auto-generated — do NOT manually edit; regenerate with `npm run openapi` |
+| `src/services/ant-design-pro/` | auto-generated — do NOT manually edit; regenerate with `bun run openapi` |
 
 **Business files** — preserve these, only adjust imports/APIs if needed:
 
@@ -104,7 +104,7 @@ Apply changes with these rules:
 - Never rewrite business logic, restructure components, or change styling approaches unless the old approach is broken.
 
 **Auto-generated files:**
-- `src/services/ant-design-pro/`: do NOT edit. Tell the user to run `npm run openapi` after upgrade.
+- `src/services/ant-design-pro/`: do NOT edit. Tell the user to run `bun run openapi` after upgrade.
 
 ### Step 5 — Antd-specific migration checks
 
@@ -128,15 +128,15 @@ Address any findings by updating the flagged code.
 ### Step 6 — Install and verify
 
 ```bash
-npm install
-npm run lint
-npm run build
+bun install
+bun run lint
+bun run build
 ```
 
 Fix any errors. Common post-upgrade issues:
 - Type errors from changed APIs → check `npx antd info <Component>` for current APIs
-- New lint rules from Biome config changes → run `npm run biome` to auto-fix
-- Missing peer dependencies → check `npm install` warnings
+- New lint rules from Biome config changes → run `bun run biome` to auto-fix
+- Missing peer dependencies → check `bun install` warnings
 
 ### Step 7 — Cleanup and summarize
 
@@ -153,7 +153,7 @@ Output a summary of all changes made, grouped by category:
 5. **Manual review needed** — anything you're unsure about or that requires user action
 
 Remind the user to:
-- Run `npm run openapi` if they use the auto-generated API services
+- Run `bun run openapi` if they use the auto-generated API services
 - Test their application thoroughly
 - Commit the changes
 

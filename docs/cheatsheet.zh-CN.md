@@ -23,7 +23,7 @@
 ```bash
 git clone --depth 1 https://github.com/ant-design/ant-design-pro.git my-project
 cd my-project
-npm install
+bun install
 ```
 
 项目提供两种模式：
@@ -35,8 +35,8 @@ npm install
 
 ```bash
 git add -A && git commit -m "chore: save before simple"  # 先提交，以便回退
-npm run simple                                             # 删除示例页面和多余依赖
-npm install                                                # 更新依赖
+bun run simple                                             # 删除示例页面和多余依赖
+bun install                                                # 更新依赖
 ```
 
 > 💡 建议先用完整模式熟悉项目结构，再切换精简模式开始开发。
@@ -66,30 +66,30 @@ npm install                                                # 更新依赖
 
 | 命令 | 说明 |
 |------|------|
-| `npm start` | 启动开发服务器（UMI_ENV=dev，带 Mock） |
-| `npm run dev` | 启动开发服务器（UMI_ENV=dev，无 Mock） |
-| `npm run start:no-mock` | 无 Mock 启动 |
-| `npm run start:pre` | 预发布环境启动 |
-| `npm run start:test` | 测试环境启动 |
-| `npm run build` | 构建生产产物 |
-| `npm run preview` | 预览已构建产物（需先 `npm run build`，端口 8000） |
-| `npm run preview:build` | 构建并本地预览（端口 8000） |
-| `npm run deploy` | 构建并部署到 GitHub Pages |
-| `npm run analyze` | 构建产物体积分析 |
-| `npm run lint` | 代码检查（Biome + TypeScript） |
-| `npm run biome` | Biome 自动修复 |
-| `npm test` | 运行测试 |
-| `npm run test:coverage` | 测试覆盖率 |
-| `npm run test:update` | 更新测试快照 |
-| `npm run tsc` | 类型检查（不生成文件） |
-| `npm run i18n-remove` | 移除国际化（locale=zh-CN） |
-| `npm run record` | 录制登录场景请求数据 |
-| `npm run openapi` | 根据 OpenAPI 生成 API 代码 |
-| `npm run simple` | 精简模式（删除示例页面和多余依赖） |
+| `bun start` | 启动开发服务器（UMI_ENV=dev，带 Mock） |
+| `bun run dev` | 启动开发服务器（UMI_ENV=dev，无 Mock） |
+| `bun run start:no-mock` | 无 Mock 启动 |
+| `bun run start:pre` | 预发布环境启动 |
+| `bun run start:test` | 测试环境启动 |
+| `bun run build` | 构建生产产物 |
+| `bun run preview` | 预览已构建产物（需先 `bun run build`，端口 8000） |
+| `bun run preview:build` | 构建并本地预览（端口 8000） |
+| `bun run deploy` | 构建并部署到 GitHub Pages |
+| `bun run analyze` | 构建产物体积分析 |
+| `bun run lint` | 代码检查（Biome + TypeScript） |
+| `bun run biome` | Biome 自动修复 |
+| `bun test` | 运行测试 |
+| `bun run test:coverage` | 测试覆盖率 |
+| `bun run test:update` | 更新测试快照 |
+| `bun run tsc` | 类型检查（不生成文件） |
+| `bun run i18n-remove` | 移除国际化（locale=zh-CN） |
+| `bun run record` | 录制登录场景请求数据 |
+| `bun run openapi` | 根据 OpenAPI 生成 API 代码 |
+| `bun run simple` | 精简模式（删除示例页面和多余依赖） |
 
 > 💡 `UMI_ENV` 用于切换环境配置，对应 `config/proxy.ts` 中的不同代理规则。
 
-> 💡 `npm run simple` 会删除示例页面（dashboard、form、list 等）和多余依赖（plots 等），替换为精简路由，适合从零开始开发。**建议先提交代码，以便需要时回退。**
+> 💡 `bun run simple` 会删除示例页面（dashboard、form、list 等）和多余依赖（plots 等），替换为精简路由，适合从零开始开发。**建议先提交代码，以便需要时回退。**
 
 **构建工具：** 本项目使用 [utoopack](https://github.com/utooland/utoo)（基于 Turbopack 的新一代打包器）作为默认构建工具，通过 `config/config.ts` 中的 `utoopack` 字段配置。utoopack 兼容 Webpack 配置格式，支持 `module.rules` 配置自定义加载器。
 
@@ -283,7 +283,7 @@ await request('/api/users', { method: 'POST', data: { name: 'test' } });
 **OpenAPI 代码生成：**
 
 ```bash
-npm run openapi
+bun run openapi
 ```
 
 根据 `config/oneapi.json` 自动生成 `src/services/` 下的 API 调用代码。
@@ -441,9 +441,9 @@ antd: {
 **Jest 测试：**
 
 ```bash
-npm test                    # 运行所有测试
-npm run test:coverage       # 带覆盖率报告
-npm run test:update         # 更新快照
+bun test                    # 运行所有测试
+bun run test:coverage       # 带覆盖率报告
+bun run test:update         # 更新快照
 ```
 
 测试文件放在对应组件目录下，命名为 `*.test.ts(x)`。
@@ -474,14 +474,14 @@ export default {
 };
 ```
 
-> 💡 用 `MOCK=none` 启动可跳过 Mock，直接代理到后端：`npm run start:no-mock`。
+> 💡 用 `MOCK=none` 启动可跳过 Mock，直接代理到后端：`bun run start:no-mock`。
 
 → 更多内容见 [umi 测试](https://umijs.org/docs/guides/test)、[umi Mock](https://umijs.org/docs/guides/mock)
 
 ## FAQ
 
 **Q: 如何关闭 Mock？**
-`npm run start:no-mock` 或 `cross-env MOCK=none max dev`
+`bun run start:no-mock` 或 `cross-env MOCK=none max dev`
 
 **Q: 如何修改主题色？**
 修改 `config/defaultSettings.ts` 的 `colorPrimary`，开发时可用 SettingDrawer 实时调整。
@@ -500,10 +500,10 @@ npx skills add ant-design/ant-design-pro
 然后在项目根目录用 Claude Code 运行 `/pro-upgrade`，AI 会自动对比最新模板并辅助完成升级（依赖、配置、代码模式等），遇到冲突时会保守处理并询问确认。如使用其他 AI 助手，可将 `.claude/skills/pro-upgrade/SKILL.md` 中的内容提供给它。
 
 **Q: 如何部署？**
-`npm run build` 生成 `dist/` 目录，部署到任意静态服务器。配置 `publicPath` 处理非根目录部署。`npm run deploy` 会自动构建并发布到 GitHub Pages（推送到 gh-pages 分支）。
+`bun run build` 生成 `dist/` 目录，部署到任意静态服务器。配置 `publicPath` 处理非根目录部署。`bun run deploy` 会自动构建并发布到 GitHub Pages（推送到 gh-pages 分支）。
 
 **Q: 如何使用 OpenAPI 代码生成？**
-1. 在 `config/config.ts` 配置 `openAPI` 2. 运行 `npm run openapi` 3. 自动生成 `src/services/` 下的代码
+1. 在 `config/config.ts` 配置 `openAPI` 2. 运行 `bun run openapi` 3. 自动生成 `src/services/` 下的代码
 
 → 更多内容见 [umi FAQ](https://umijs.org/docs/introduce/faq)
 
@@ -551,7 +551,7 @@ npx skills add ant-design/ant-design-pro
 ```bash
 # 1. 编辑 OpenAPI 配置：config/oneapi.json
 # 2. 运行生成命令（覆盖 src/services/ant-design-pro/）
-npm run openapi
+bun run openapi
 # 3. 不要手动编辑生成代码，改 oneapi.json 重新生成
 ```
 
@@ -559,11 +559,11 @@ npm run openapi
 
 ```bash
 git add -A && git commit -m "chore: save before simple"  # 必须先提交
-npm run simple                                              # 不可逆操作
-npm install                                                 # 更新依赖
+bun run simple                                              # 不可逆操作
+bun install                                                 # 更新依赖
 ```
 
-## AI Skills（Claude Code）
+## AI Skills (Claude Code)
 
 本项目内置两个 [Claude Code Skills](https://docs.anthropic.com/en/docs/claude-code/skills)（位于 `.claude/skills/`）：
 
@@ -581,7 +581,7 @@ npm install                                                 # 更新依赖
 2. 将文件分类为框架文件和业务文件
 3. 合并依赖更新、配置变更和代码模式迁移
 4. 运行 `npx antd lint` 检查 antd 相关问题
-5. 通过 `npm run lint && npm run build` 验证
+5. 通过 `bun run lint && bun run build` 验证
 
 ### `/antd` — Ant Design CLI 助手
 
@@ -613,8 +613,8 @@ npx skills add ant-design/ant-design-pro
 
 ## 注意事项
 
-- **`src/services/ant-design-pro/`** 为自动生成代码，禁止手动编辑。修改 `config/oneapi.json` 后执行 `npm run openapi` 重新生成
-- **`npm run simple` 不可逆**：会删除示例页面和多余依赖，执行前务必提交代码
+- **`src/services/ant-design-pro/`** 为自动生成代码，禁止手动编辑。修改 `config/oneapi.json` 后执行 `bun run openapi` 重新生成
+- **`bun run simple` 不可逆**：会删除示例页面和多余依赖，执行前务必提交代码
 - **`.umi` 临时目录**：`src/.umi` 由 Umi 自动生成，遇到异常可删除后重启开发服务器
 - **Biome 代替 ESLint**：项目使用 Biome 进行 lint 和格式化，不要安装 ESLint 或 Prettier 插件
 - **Commit 规范**：必须遵循 [Conventional Commits](https://www.conventionalcommits.org/)，如 `feat:`, `fix:`, `chore:` 等
