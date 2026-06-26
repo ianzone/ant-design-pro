@@ -78,7 +78,7 @@ bun install                                                # Update dependencies
 | `bun run analyze` | Analyze bundle size |
 | `bun run lint` | Lint (Biome + TypeScript) |
 | `bun run biome` | Auto-fix with Biome |
-| `bun test` | Run tests |
+| `bun run test` | Run tests |
 | `bun run test:coverage` | Test with coverage |
 | `bun run test:update` | Update test snapshots |
 | `bun run tsc` | Type check without emitting |
