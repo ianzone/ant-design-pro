@@ -154,7 +154,7 @@ const TableList: React.FC = () => {
       sorter: true,
       dataIndex: 'updatedAt',
       valueType: 'dateTime',
-      formItemRender: (
+      renderFormItem: (
         item: ProColumns<API.RuleListItem>,
         {
           defaultRender,
