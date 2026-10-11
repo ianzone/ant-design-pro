@@ -7,22 +7,14 @@ export default async function globalSetup(config: FullConfig) {
   });
 
   try {
-    // Umi serves its Bundling page with HTTP 200 before compilation finishes.
+    // Playwright accepts HTTP 400 as ready, but Umi returns it while compiling.
+    // Require HTTP 200 from the status probe before starting tests.
     await expect
-      .poll(
-        async () => {
-          const response = await context.get('/__umi/api/bundle-status');
-          if (!response.ok()) return false;
-
-          const { bundleStatus, mfsuBundleStatus } = await response.json();
-          return (
-            bundleStatus?.done === true &&
-            (!mfsuBundleStatus || mfsuBundleStatus.done === true)
-          );
-        },
-        { timeout: 120_000, message: 'Wait for Umi compilation to finish' },
-      )
-      .toBe(true);
+      .poll(async () => (await context.get('/__umi/api/status')).status(), {
+        timeout: 120_000,
+        message: 'Wait for Umi compilation to finish',
+      })
+      .toBe(200);
   } finally {
     await context.dispose();
   }
